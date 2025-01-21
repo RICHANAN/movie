@@ -44,14 +44,14 @@ const movieReducer = (state = initialState, action: any): MovieState => {
     case SET_SORT_OPTION:
       return {
         ...state,
-        movies: action.payload,
-        sortOption: action.payload
+        movies: action.payload.movies,
+        sortOption: action.payload.sortOption
       };
     case SET_FILTER_TEXT:
       return {
         ...state,
         movies: action.payload,
-        filterText: action.payload
+        filterText: action.payload.filterText
       };
     default:
       return state;

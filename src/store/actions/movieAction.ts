@@ -8,14 +8,14 @@ export const FETCH_OMDB_MOVIE_FAILURE = 'FETCH_OMDB_MOVIE_FAILURE';
 export const SET_SORT_OPTION = 'SET_SORT_OPTION';
 export const SET_FILTER_TEXT = 'SET_FILTER_TEXT';
 
-export const setSortOption = (sortOption: string) => ({
+export const setSortOption = (sortOption: string, movies:[]) => ({
   type: SET_SORT_OPTION,
-  payload: sortOption
+  payload: {'sortOption':sortOption, movies:movies}
 });
 
-export const setFilterText = (filterText: string) => ({
+export const setFilterText = (filterText: string, movies:[]) => ({
   type: SET_FILTER_TEXT,
-  payload: filterText
+  payload: {'filterText':filterText, movies:movies}
 });
 
 export const fetchOmdbMovie = (movieTitle: string) => ({
@@ -33,7 +33,7 @@ export const fetchOmdbMovie = (movieTitle: string) => ({
     payload: error
   });
 
-export const fetchMovies = (filterText?:string) => ({
+export const fetchMovies = () => ({
   type: FETCH_MOVIES
 });
 

@@ -48,7 +48,7 @@ describe('MovieList', () => {
     const filterInput = screen.getByPlaceholderText('Filter by title');
     fireEvent.change(filterInput, { target: { value: 'hope' } });
 
-    expect(store.dispatch).toHaveBeenCalledWith(fetchMovies('hope'));
+    expect(store.dispatch).toHaveBeenCalledWith(fetchMovies());
   });
 
   it('should filter the movies displayed', () => {

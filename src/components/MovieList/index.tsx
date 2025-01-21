@@ -12,7 +12,7 @@ const MovieList: React.FC = () => {
 
   return (
     <div className="movie-list">
-      {movies.map((movie: any) => (
+      {movies?.map((movie: any) => (
         <div key={movie.episode_id} onClick={() => handleSelectMovie(movie)}>
           <h3>{movie.title}</h3>
         </div>

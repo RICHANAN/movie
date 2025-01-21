@@ -6,8 +6,8 @@ import MovieSearch from '../../components/MovieSearch';
 import { fetchMovies, setFilterText, setSortOption } from '../../store/actions/movieAction';
 
 export const Home: React.FC = () => {
-    const { movies, sortOption, filterText } = useSelector((state: any) => state.movies);
-
+    const { movies, sortOption, filterText } = useSelector((state: any) => state);
+    const newMovie=movies;
     const dispatch = useDispatch();
     const [searchQuery, setSearchQuery] = useState<string>('');
   
@@ -21,20 +21,20 @@ export const Home: React.FC = () => {
    
     
       const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        dispatch(setSortOption(event.target.value));
+        dispatch(setSortOption(event.target.value, movies));
       };
     
       const handleFilterChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        dispatch(setFilterText(event.target.value));
+        dispatch(setFilterText(event.target.value, newMovie));
       };
     
       // Filter the movies by title
-      const filteredMovies = movies?.filter((movie: any) => 
-        movie.title.toLowerCase().includes(filterText?.toLowerCase())
-      );
+    //   const filteredMovies = movies?.filter((movie: any) => 
+    //     movie.title.toLowerCase().includes(filterText?.toLowerCase())
+    //   );
     
       // Sort the filtered movies
-    //   const sortedMovies = [...filteredMovies]?.sort((a: any, b: any) => {
+    //   const sortedMovies = filteredMovies && [...filteredMovies]?.sort((a: any, b: any) => {
     //     if (sortOption === 'episode_id') {
     //       return a.episode_id - b.episode_id;
     //     } else if (sortOption === 'release_date') {
