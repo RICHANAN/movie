@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { Provider, useDispatch, useSelector } from 'react-redux';
 import { fetchOmdbMovie } from '../../store/actions/movieAction';
 
 const MovieDetail: React.FC = () => {

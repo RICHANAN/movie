@@ -6,7 +6,7 @@ import { stat } from 'fs';
 const SWAPI_URL = 'https://swapi.dev/api/films/';
 const OMDB_API_URL = 'https://www.omdbapi.com/?apikey=b9a5e69d&t=';
 let originalMovie: any[]=[]
-function* fetchMoviesSaga(action: any) {
+export function* fetchMoviesSaga(action: any) {
   try {
     const response: {data: any} = yield call(axios.get, SWAPI_URL);
     originalMovie=response.data.results;
@@ -15,7 +15,7 @@ function* fetchMoviesSaga(action: any) {
     yield put(fetchMoviesFailure(error.message));
   }
 }
-function* setMovie(action: any){
+export function* setMovie(action: any){
   try{
   const filteredMovies = originalMovie.filter((movie: any) =>
       movie.title.toLowerCase().includes(action.payload?.filterText)
@@ -25,7 +25,7 @@ function* setMovie(action: any){
     yield put(fetchMoviesFailure(error.message));
 }
 }
-function* setSortMovie(action: any){
+export function* setSortMovie(action: any){
   try{
     const filteredMovies = action.payload.movies
     filteredMovies && [...filteredMovies]?.sort((a: any, b: any) => {
@@ -41,7 +41,7 @@ function* setSortMovie(action: any){
     yield put(fetchMoviesFailure(error.message));
 }
 }
-function* fetchOmdbMovieSaga(action: any) {
+export function* fetchOmdbMovieSaga(action: any) {
   try {
     const response: { data: any} = yield call(axios.get, `${OMDB_API_URL}${action.payload}`);
     yield put(fetchOmdbMovieSuccess(response.data, action.payload));
